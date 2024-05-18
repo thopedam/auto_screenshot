@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:auto_screenshot/src/exceptions.dart';
+import 'package:checked_yaml/checked_yaml.dart' as yaml;
 import 'package:json_annotation/json_annotation.dart';
 import "package:path/path.dart" as path;
-import 'package:checked_yaml/checked_yaml.dart' as yaml;
 
 part 'config.g.dart';
 
@@ -34,7 +34,8 @@ class AutoScreenshotConfig {
 
   @JsonKey(name: 'output_folder')
   final String outputFolder;
-
+  @JsonKey(name: 'delay')
+  final int? delay;
   @JsonKey(name: 'sqlite_folder')
   final String? sqliteFolder;
 
@@ -42,6 +43,7 @@ class AutoScreenshotConfig {
     required this.devices,
     required this.baseUrl,
     required this.paths,
+    this.delay,
     this.outputFolder = "auto_screenshot",
     required this.bundleId,
     this.sqliteFolder,

@@ -18,6 +18,7 @@ AutoScreenshotConfig _$AutoScreenshotConfigFromJson(Map json) => $checkedCreate(
             'base_url',
             'screenshot',
             'output_folder',
+            'delay',
             'sqlite_folder'
           ],
         );
@@ -28,6 +29,7 @@ AutoScreenshotConfig _$AutoScreenshotConfigFromJson(Map json) => $checkedCreate(
               'base_url', (v) => Map<String, String>.from(v as Map)),
           paths: $checkedConvert('screenshot',
               (v) => (v as List<dynamic>).map((e) => e as String).toList()),
+          delay: $checkedConvert('delay', (v) => (v as num?)?.toInt()),
           outputFolder: $checkedConvert(
               'output_folder', (v) => v as String? ?? "auto_screenshot"),
           bundleId: $checkedConvert(
@@ -53,5 +55,6 @@ Map<String, dynamic> _$AutoScreenshotConfigToJson(
       'base_url': instance.baseUrl,
       'screenshot': instance.paths,
       'output_folder': instance.outputFolder,
+      'delay': instance.delay,
       'sqlite_folder': instance.sqliteFolder,
     };

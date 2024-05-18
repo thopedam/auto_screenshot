@@ -56,7 +56,7 @@ Future<void> captureScreensOnDevice(
   await Future.delayed(Duration(seconds: 8));
   for (var capturePath in config.paths) {
     await device.loadDeepLink(baseUrl, capturePath, config.bundleId);
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(Duration(seconds: config.delay ?? 1));
 
     await device.captureScreen(
       path.join(
